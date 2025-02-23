@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artist Name</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f8f8f8;
+        color: #333;
+      }
+      h1 {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 32px;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      h1.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .menu-icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+      .sidebar {
+        height: 100vh;
+        width: 0;
+        position: fixed;
+        top: 0;
+        right: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: width 0.3s ease;
+        padding-top: 60px;
+        color: white;
+        z-index: 1500;
+      }
+
+      .sidebar a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-size: 18px;
+        color: #fff;
+        display: block;
+        transition: 0.3s;
+      }
+
+      .sidebar a:hover {
+        color: #007bff;
+      }
+
+      .sidebar .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .sidebar .sub-menu {
+        margin-left: 20px;
+        display: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .sidebar .sub-menu a {
+        font-size: 14px;
+      }
+
+      .sidebar a.expandable {
+        cursor: pointer;
+      }
+
+      .sidebar a.expandable:hover {
+        color: #007bff;
+      }
+
+      .categories {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 100px 20px 20px 20px;
+      }
+      .categories button {
+        padding: 10px 15px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #444;
+        color: white;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+      .categories button.active {
+        background-color: #007bff;
+      }
+      .categories button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+      }
+      .gallery {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin: 20px;
+      }
+      .gallery-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        max-width: 600px;
+        padding: 10px;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .gallery-item img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+      }
+      .gallery-item h3 {
+        margin: 10px 0 5px;
+        font-size: 18px;
+      }
+      .gallery-item p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: #555;
+      }
+      .gallery-item.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .gallery-item.hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="artist-title">[Artist Name]</h1>
+    <div class="menu-icon" onclick="openSidebar()">☰</div>
+    <div class="sidebar" id="sidebar">
+      <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()"
+        >&times;</a
+      >
+      <a href="./index.html">Home</a>
+      <a
+        href="javascript:void(0)"
+        class="expandable"
+        onclick="toggleArtSubMenu()"
+        >Art</a
+      >
+      <div class="sub-menu" id="art-submenu">
+        <a href="./painting.html">Painting</a>
+        <a href="#install">Install</a>
+        <a href="#video">Video</a>
+      </div>
+      <a href="#exhibition">Exhibition</a>
+      <a href="#statement">Statement</a>
+      <a href="#cv">CV</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+      function openSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.style.width = "300px";
+      }
+
+      function closeSidebar() {
+        const sidebar = document.getElementById("sidebar");
+        sidebar.style.width = "0";
+      }
+
+      function toggleArtSubMenu() {
+        const subMenu = document.getElementById("art-submenu");
+        if (subMenu.style.display === "block") {
+          subMenu.style.display = "none";
+          subMenu.style.opacity = "0";
+        } else {
+          subMenu.style.display = "block";
+          subMenu.style.opacity = "1";
+        }
+      }
+
+      const jsonUrl = "./artwork.json";
+
+      fetch(jsonUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to load metadata");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const gallery = document.getElementById("gallery");
+          let filteredImages = data.filter((image) =>
+            image.categories.includes("home")
+          );
+
+          filteredImages.forEach((image, index) => {
+            const item = document.createElement("div");
+            item.className = "gallery-item";
+
+            const img = document.createElement("img");
+            img.src = image.link;
+            img.alt = image.title;
+
+            const title = document.createElement("h3");
+            title.textContent = image.title;
+
+            const description = document.createElement("p");
+            description.textContent = image.short_description;
+
+            item.appendChild(img);
+            item.appendChild(title);
+            item.appendChild(description);
+            gallery.appendChild(item);
+          });
+
+          let currentIndex = 0;
+          const items = document.querySelectorAll(".gallery-item");
+
+          function showNextImage() {
+            items.forEach((item, index) => {
+              if (index === currentIndex) {
+                item.classList.add("show");
+              } else {
+                item.classList.remove("show");
+              }
+            });
+            currentIndex = (currentIndex + 1) % items.length;
+          }
+
+          setInterval(showNextImage, 3000);
+          showNextImage();
+
+          const titleElement = document.getElementById("artist-title");
+          titleElement.classList.add("show");
+        })
+        .catch((error) => {
+          console.error("Error fetching metadata:", error);
+        });
+    </script>
+  </body>
+</html>

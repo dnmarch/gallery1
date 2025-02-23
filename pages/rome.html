@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A detailed view of the painting 'Beyond Horizons' from 2020."
+    />
+    <title>Beyond Horizons - 2020 Painting</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        background-color: #f4f4f4;
+      }
+      header {
+        background-color: #444;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+      }
+      .painting-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+      .painting-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        transition: transform 0.3s ease;
+      }
+      .painting-container img:hover {
+        transform: scale(1.05); /* Enlarge image slightly on hover */
+      }
+      .description {
+        max-width: 800px;
+        margin-top: 2rem;
+        padding: 1rem;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 1s forwards;
+      }
+      .description p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #555;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Golden Gate Bridge - 2020</h1>
+    </header>
+    <div class="painting-container">
+      <img
+        src="https://i.ibb.co/k3zgFZS/Rom-Colosseum-Sept-2021-3.jpg"
+        alt="Beyond Horizons - Abstract Landscape"
+      />
+      <div class="description">
+        <h2>Rome</h2>
+        <p>
+          Rome (Italian and Latin: Roma, pronounced [ˈroːma] ⓘ) is the capital
+          city of Italy. It is also the capital of the Lazio region, the centre
+          of the Metropolitan City of Rome Capital, and a special comune
+          (municipality) named Comune di Roma Capitale. With 2,860,009 residents
+          in 1,285 km2 (496.1 sq mi),[2] Rome is the country's most populated
+          comune and the third most populous city in the European Union by
+          population within city limits. The Metropolitan City of Rome, with a
+          population of 4,355,725 residents, is the most populous metropolitan
+          city in Italy.[3] Its metropolitan area is the third-most populous
+          within Italy.[5] Rome is located in the central-western portion of the
+          Italian Peninsula, within Lazio (Latium), along the shores of the
+          Tiber Valley. Vatican City (the smallest country in the world and
+          headquarters of the worldwide Catholic Church under the governance of
+          the Holy See)[6] is an independent country inside the city boundaries
+          of Rome, the only existing example of a country within a city. Rome is
+          often referred to as the City of Seven Hills due to its geographic
+          location, and also as the "Eternal City". Rome is generally considered
+          to be the cradle of Western civilization and Western Christian
+          culture, and the centre of the Catholic Church.[7][8][9]
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

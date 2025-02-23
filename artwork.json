@@ -1,0 +1,50 @@
+[
+  {
+    "link": "./images/trevi.jpg",
+    "title": "Sunset Bliss",
+    "short_description": "A serene view of a sunset over the ocean.",
+    "description": "This painting captures the tranquil beauty of a sunset with vibrant hues of orange and purple reflecting on the water.",
+    "year": "2024",
+    "categories": ["-2024"]
+  },
+  {
+    "link": "https://i.natgeofe.com/k/a6c9f195-de20-445d-9d36-745ef56042c5/OG_Colosseum_Ancient-Rome_KIDS_1122_3x2.jpg",
+    "title": "Mountain Majesty",
+    "short_description": "Snow-capped peaks under a bright blue sky.",
+    "description": "This artwork showcases the grandeur of mountains with intricate textures and dynamic lighting.",
+    "year": "2023",
+    "categories": ["featured", "2023", "home"]
+  },
+  {
+    "link": "https://www.italyperfect.com/cdn-cgi/image/format=auto,width=1256/https://www.italyperfect.com/g/photos/upload/sml_845543004-1590582528-ip-info-rome.jpg",
+    "title": "Forest Whisper",
+    "short_description": "A quiet path through a dense forest.",
+    "description": "With shades of green and brown, this painting evokes a sense of mystery and peace found in nature.",
+    "year": "2023",
+    "categories": ["2023", "home"]
+  },
+  {
+    "link": "https://assets-jpcust.jwpsrv.com/thumbnails/1hbrfz2f-720.jpg",
+    "title": "Cityscape Dream",
+    "short_description": "A vibrant city skyline at dusk.",
+    "description": "This painting captures the energy of the city with colorful lights and dramatic skies.",
+    "year": "2024",
+    "categories": ["featured", "-2024", "home"]
+  },
+  {
+    "link": "https://media.cntraveller.com/photos/611bf72ce98d5e6590e82c32/16:9/w_2560%2Cc_limit/14rome-jan-feb-2021-issue-jenny-zarins.jpg",
+    "title": "Cityscape Dream",
+    "short_description": "A vibrant city skyline at dusk.",
+    "description": "This painting captures the energy of the city with colorful lights and dramatic skies.",
+    "year": "2024",
+    "categories": ["featured", "home"]
+  },
+  {
+    "link": "./images/colosseum.jpg",
+    "title": "Cityscape Dream",
+    "short_description": "A vibrant city skyline at dusk.",
+    "description": "This painting captures the energy of the city with colorful lights and dramatic skies.",
+    "year": "2024",
+    "categories": ["featured", "home"]
+  }
+]
