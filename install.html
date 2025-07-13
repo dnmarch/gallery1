@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wenqin Fan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+            color: #333;
+        }
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 32px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        h1.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .sidebar {
+            height: 100vh;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: width 0.3s ease;
+            padding-top: 60px;
+            color: white;
+            z-index: 1500;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            color: #007bff;
+        }
+        .sidebar .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .sidebar .sub-menu {
+            margin-left: 20px;
+            display: none;
+            transition: opacity 0.3s ease;
+        }
+        .sidebar .sub-menu a {
+            font-size: 14px;
+        }
+        .sidebar a.expandable {
+            cursor: pointer;
+        }
+        .sidebar a.expandable:hover {
+            color: #007bff;
+        }
+        .gallery {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin: 120px 20px 20px 20px;
+        }
+        .gallery-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 600px;
+            padding: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .gallery-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gallery-item.hidden {
+            display: none;
+        }
+        .group-title {
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 8px;
+            user-select: none;
+            display: inline-flex;
+            align-items: center;
+            transition: color 0.3s;
+        }
+        .group-title::after {
+            content: " \25BC";
+            font-size: 14px;
+            margin-left: 6px;
+            transition: transform 0.3s;
+        }
+        .group-title.collapsed::after {
+            transform: rotate(-90deg);
+        }
+        .group-title:hover {
+            color: #007bff;
+        }
+        .group-content {
+            overflow: hidden;
+            transition: transform 0.5s ease, max-height 0.5s ease, opacity 0.5s ease;
+            transform-origin: top;
+            max-height: 0;
+            opacity: 0;
+            transform: scaleY(0);
+        }
+        .group-content.expanded {
+            max-height: 1000px;
+            opacity: 1;
+            transform: scaleY(1);
+        }
+        .group-content img {
+            aspect-ratio: 4 / 3;
+            height: auto;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+            display: none;
+            touch-action: pan-y pinch-zoom;
+        }
+
+        .lightbox img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: contain;
+            pointer-events: none;
+            transition: transform 0.3s ease;
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            color: white;
+            text-align: center;
+            font-size: 16px;
+            max-width: 90vw;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+<h1 id="artist-title">Wenqin Fan</h1>
+<div class="menu-icon" onclick="openSidebar()">☰</div>
+<div class="sidebar" id="sidebar">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()"
+    >&times;</a
+    >
+    <a href="./index.html">Home</a>
+    <a
+            href="javascript:void(0)"
+            class="expandable"
+            onclick="toggleArtSubMenu()"
+    >Art</a
+    >
+    <div class="lightbox" id="lightbox">
+        <img id="lightbox-img" src="" alt="" />
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
+    <div class="sub-menu" id="art-submenu">
+        <a href="./painting.html">Painting</a>
+        <a href="./install.html">Install</a>
+        <a href="./video.html">Video</a>
+    </div>
+    <a href="#exhibition">Exhibition</a>
+    <a href="#statement">Statement</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
+</div>
+<div class="gallery" id="gallery"></div>
+<script>
+    function openSidebar() {
+        document.getElementById("sidebar").style.width = "300px";
+    }
+    function closeSidebar() {
+        document.getElementById("sidebar").style.width = "0";
+    }
+    function toggleArtSubMenu() {
+        const subMenu = document.getElementById("art-submenu");
+        subMenu.style.display =
+            subMenu.style.display === "block" ? "none" : "block";
+    }
+
+    let lightbox, lightboxImg, lightboxCaption, currentGroup, currentIndex;
+
+    function openLightbox(images, index) {
+        currentGroup = images;
+        currentIndex = index;
+        if (!lightbox) {
+            lightbox = document.createElement("div");
+            lightbox.className = "lightbox";
+            lightbox.innerHTML = `
+            <img />
+            <div class="lightbox-caption"></div>
+          `;
+            document.body.appendChild(lightbox);
+
+            lightboxImg = lightbox.querySelector("img");
+            lightboxCaption = lightbox.querySelector(".lightbox-caption");
+
+            let startX = null;
+
+            lightbox.addEventListener("touchstart", (e) => {
+                startX = e.touches[0].clientX;
+            });
+            lightbox.addEventListener("touchend", (e) => {
+                const endX = e.changedTouches[0].clientX;
+                if (startX - endX > 50) showNext();
+                else if (endX - startX > 50) showPrev();
+            });
+
+            let dragStartX = null;
+            lightbox.addEventListener(
+                "mousedown",
+                (e) => (dragStartX = e.clientX)
+            );
+            lightbox.addEventListener("mouseup", (e) => {
+                if (dragStartX !== null) {
+                    const delta = e.clientX - dragStartX;
+                    if (delta > 50) showPrev();
+                    else if (delta < -50) showNext();
+                }
+                dragStartX = null;
+            });
+
+            lightbox.addEventListener("click", (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+        }
+        showImage(index);
+        lightbox.style.display = "flex";
+    }
+
+    function showImage(index) {
+        const imgData = currentGroup[index];
+        lightboxImg.src = imgData.link;
+        lightboxCaption.innerHTML = `<strong>${
+            imgData.title || ""
+        }</strong><br>${imgData.short_description || ""}`;
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % currentGroup.length;
+        showImage(currentIndex);
+    }
+    function showPrev() {
+        currentIndex =
+            (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+        showImage(currentIndex);
+    }
+    function closeLightbox() {
+        lightbox.style.display = "none";
+    }
+
+    fetch("./artwork.json?ts=" + Date.now())
+        .then((response) => response.json())
+        .then((data) => {
+            const gallery = document.getElementById("gallery");
+            const groupedByCategory = {};
+            data.forEach((img) => {
+                img.categories.forEach((cat) => {
+                    if (cat.startsWith("install_")) {
+                        if (!groupedByCategory[cat]) groupedByCategory[cat] = [];
+                        groupedByCategory[cat].push(img);
+                    }
+                });
+            });
+
+            Object.keys(groupedByCategory).forEach((category) => {
+                const groupImages = groupedByCategory[category];
+                const item = document.createElement("div");
+                item.className = "gallery-item";
+                item.setAttribute("data-categories", category);
+
+                const titleOverlay = document.createElement("div");
+                titleOverlay.className = "group-title collapsed";
+                titleOverlay.textContent = groupImages[0].title || category;
+
+                const contentBlock = document.createElement("div");
+                contentBlock.className = "group-content";
+
+                const grid = document.createElement("div");
+                const count = groupImages.length;
+                let cols = count === 4 ? 2 : Math.min(count, 3);
+                grid.style.display = "grid";
+                grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
+                grid.style.gap = "10px";
+                grid.style.width = "100%";
+
+                groupImages.forEach((imgData, i) => {
+                    const img = document.createElement("img");
+                    img.src = imgData.post_link;
+                    img.alt = imgData.title;
+                    img.style.width = "100%";
+                    img.style.borderRadius = "8px";
+                    img.style.transition = "transform 0.3s ease";
+                    img.addEventListener(
+                        "mouseover",
+                        () => (img.style.transform = "scale(1.03)")
+                    );
+                    img.addEventListener(
+                        "mouseout",
+                        () => (img.style.transform = "scale(1)")
+                    );
+                    img.addEventListener("click", () => openLightbox(groupImages, i));
+                    grid.appendChild(img);
+                });
+
+                const shortDesc = document.createElement("p");
+                shortDesc.textContent = groupImages[0].short_description || "";
+                shortDesc.style.marginTop = "10px";
+
+                contentBlock.appendChild(grid);
+                contentBlock.appendChild(shortDesc);
+
+                item.appendChild(titleOverlay);
+                item.appendChild(contentBlock);
+
+                titleOverlay.addEventListener("click", () => {
+                    const isHidden = contentBlock.classList.contains("expanded");
+                    contentBlock.classList.toggle("expanded");
+                    titleOverlay.classList.toggle("collapsed");
+                    if (!isHidden) {
+                        item.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }
+                });
+
+                gallery.appendChild(item);
+            });
+
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        entry.isIntersecting
+                            ? entry.target.classList.add("show")
+                            : entry.target.classList.remove("show");
+                    });
+                },
+                { threshold: 0.1 }
+            );
+
+            document
+                .querySelectorAll(".gallery-item")
+                .forEach((item) => observer.observe(item));
+
+            const titleObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    entry.isIntersecting
+                        ? entry.target.classList.add("show")
+                        : entry.target.classList.remove("show");
+                });
+            });
+            titleObserver.observe(document.getElementById("artist-title"));
+        })
+        .catch((error) => console.error("Error fetching metadata:", error));
+</script>
+</body>
+</html>

@@ -1,50 +1,273 @@
 [
   {
-    "link": "./images/trevi.jpg",
-    "title": "Sunset Bliss",
-    "short_description": "A serene view of a sunset over the ocean.",
-    "description": "This painting captures the tranquil beauty of a sunset with vibrant hues of orange and purple reflecting on the water.",
+    "link": "https://i.postimg.cc/VvPxFM50/Blood-Flow-in-Forest.png",
+    "title": "Blood Flow in Forest",
+    "short_description": "200 × 150 cm",
+    "description": "This large-scale painting conveys the dynamic energy of a forest with bold strokes and deep colors.",
     "year": "2024",
-    "categories": ["-2024"]
+    "categories": ["home", "-2024"],
+    "post_link": "https://i.postimg.cc/VvPxFM50/Blood-Flow-in-Forest.png"
   },
   {
-    "link": "https://i.natgeofe.com/k/a6c9f195-de20-445d-9d36-745ef56042c5/OG_Colosseum_Ancient-Rome_KIDS_1122_3x2.jpg",
-    "title": "Mountain Majesty",
-    "short_description": "Snow-capped peaks under a bright blue sky.",
-    "description": "This artwork showcases the grandeur of mountains with intricate textures and dynamic lighting.",
+    "link": "./images/Three-Dimensional Space.png",
+    "title": "Three-Dimensional Space",
+    "short_description": "40 × 20 cm",
+    "description": "This artwork investigates depth and form through oil on linen, creating a layered visual experience.",
+    "year": "2024",
+    "categories": ["home", "-2024"],
+    "post_link": "https://i.postimg.cc/13XjwMMY/Three-Dimensional-Space.png"
+  },
+  {
+    "link": "./images/Red Melody.png",
+    "title": "Red Melody",
+    "short_description": "40 × 30 cm",
+    "description": "This painting captures the harmony of color and movement with its bold red tones.",
+    "year": "2024",
+    "categories": ["home", "-2024"],
+    "post_link": "https://i.postimg.cc/J0Q2c29S/Red-Melody.png"
+  },
+  {
+    "link": "./images/Road II.png",
+    "title": "Road II",
+    "short_description": "190 × 150 cm",
+    "description": "A large-scale canvas capturing the journey through abstract landscapes.",
     "year": "2023",
-    "categories": ["featured", "2023", "home"]
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/7YmR5j12/Road-II.png"
   },
   {
-    "link": "https://www.italyperfect.com/cdn-cgi/image/format=auto,width=1256/https://www.italyperfect.com/g/photos/upload/sml_845543004-1590582528-ip-info-rome.jpg",
-    "title": "Forest Whisper",
-    "short_description": "A quiet path through a dense forest.",
-    "description": "With shades of green and brown, this painting evokes a sense of mystery and peace found in nature.",
+    "link": "./images/Road.png",
+    "title": "Road",
+    "short_description": "135 × 182 cm",
+    "description": "This mixed-media work combines oil on canvas with transparent acrylic board for depth and texture.",
     "year": "2023",
-    "categories": ["2023", "home"]
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/sfPqrMvK/Road.png"
   },
   {
-    "link": "https://assets-jpcust.jwpsrv.com/thumbnails/1hbrfz2f-720.jpg",
-    "title": "Cityscape Dream",
-    "short_description": "A vibrant city skyline at dusk.",
-    "description": "This painting captures the energy of the city with colorful lights and dramatic skies.",
-    "year": "2024",
-    "categories": ["featured", "-2024", "home"]
+    "link": "./images/Dynamic Space.png",
+    "title": "Dynamic Space",
+    "short_description": "40 × 30 cm",
+    "description": "This artwork investigates dynamic visual energy through oil on linen.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/QdYvyvH3/Dynamic-Space.png"
   },
   {
-    "link": "https://media.cntraveller.com/photos/611bf72ce98d5e6590e82c32/16:9/w_2560%2Cc_limit/14rome-jan-feb-2021-issue-jenny-zarins.jpg",
-    "title": "Cityscape Dream",
-    "short_description": "A vibrant city skyline at dusk.",
-    "description": "This painting captures the energy of the city with colorful lights and dramatic skies.",
-    "year": "2024",
-    "categories": ["featured", "home"]
+    "link": "./images/I Go Through the Wildness.png",
+    "title": "I Go Through the Wildness",
+    "short_description": "80 × 60 cm",
+    "description": "This oil on canvas painting explores nature’s raw beauty through abstract composition.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/3NhqGTbg/I-Go-Through-the-Wildness.png"
   },
   {
-    "link": "./images/colosseum.jpg",
-    "title": "Cityscape Dream",
-    "short_description": "A vibrant city skyline at dusk.",
-    "description": "This painting captures the energy of the city with colorful lights and dramatic skies.",
+    "link": "./images/Relief.png",
+    "title": "Relief",
+    "short_description": "30 × 30 cm",
+    "description": "A compact yet expressive piece in oil on linen.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/kXnZX7SC/Relief.png"
+  },
+  {
+    "link": "./images/Disorder VI.png",
+    "title": "Disorder VI",
+    "short_description": "60 × 40 cm",
+    "description": "This series of works combines charcoal and oil on tracing paper to depict abstract disorder.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/MpphtzZ5/Disorder-VI.png"
+  },
+  {
+    "link": "./images/Disorder V.png",
+    "title": "Disorder V",
+    "short_description": "60 × 40 cm",
+    "description": "Charcoal and oil painting on tracing paper creating a layered effect.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/m2wvQP4h/Disorder-V.png"
+  },
+  {
+    "link": "./images/Disorder IV.png",
+    "title": "Disorder IV",
+    "short_description": "60 × 40 cm",
+    "description": "This piece is part of a larger series focused on chaotic abstraction.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/GtPZg2s7/Disorder-IV.png"
+  },
+  {
+    "link": "./images/Disorder III.png",
+    "title": "Disorder III",
+    "short_description": "80 × 60 cm",
+    "description": "This work utilizes charcoal and oil on tracing paper to create a complex interplay of forms.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/fWxnRHgc/Disorder-III.png"
+  },
+  {
+    "link": "./images/Disorder II.png",
+    "title": "Disorder II",
+    "short_description": "80 × 60 cm",
+    "description": "The artwork captures a sense of movement and instability using mixed media.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/CLSyBjWW/Disorder-II.png"
+  },
+  {
+    "link": "./images/Disorder I.png",
+    "title": "Disorder I",
+    "short_description": "80 × 60 cm",
+    "description": "Charcoal and oil on tracing paper forming a rich interplay of dark and light contrasts.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/zBhmWpD1/Disorder-I.png"
+  },
+  {
+    "link": "./images/Moment.png",
+    "title": "Moment",
+    "short_description": "80 × 60 cm",
+    "description": "This piece explores time and perception through expressive marks.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/G2GN92zL/Moment.png"
+  },
+  {
+    "link": "./images/A Tree.png",
+    "title": "A Tree",
+    "short_description": "40 × 30 cm",
+    "description": "An intimate oil on canvas work capturing the essence of a solitary tree.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/g0nbcmfj/A-tree.png"
+  },
+  {
+    "link": "./images/A Sacred Place II.png",
+    "title": "A Sacred Place II",
+    "short_description": "40 × 30 cm",
+    "description": "This oil painting reflects the aura of places imbued with meaning.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/s2qdvbrc/A-sacred-place-II.png"
+  },
+  {
+    "link": "./images/A Sacred Place I.png",
+    "title": "A Sacred Place I",
+    "short_description": "40 × 30 cm",
+    "description": "Oil on canvas capturing the essence of stillness and reverence.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/CxvVVzr9/A-sacred-place-I.png"
+  },
+  {
+    "link": "./images/High Land.png",
+    "title": "High Land",
+    "short_description": "30 × 45 cm",
+    "description": "This oil on canvas painting examines the relationship between landforms and atmosphere.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/CKWXFDGr/High-Land.png"
+  },
+  {
+    "link": "./images/Ends of the Earth.png",
+    "title": "Ends of the Earth",
+    "short_description": "80 × 60 cm",
+    "description": "This artwork captures the solitude and grandeur of distant landscapes.",
+    "year": "2023",
+    "categories": ["home", "2023"],
+    "post_link": "https://i.postimg.cc/7LCj8X2T/Ends-of-Earth.png"
+  },
+  {
+    "link": "https://i.postimg.cc/yNwCzz5q/bfl-1.jpg",
+    "post_link": "https://i.postimg.cc/CRcSsYWK/bfl-1-min.jpg",
+    "title": "Blood Flow in Forest",
+    "short_description": "In this scene, I combine the installation with the natural environment to create a melodic space. In the city, the material and mechanical sound of steel can be seen everywhere, but now it appears in the natural environment, colliding with a red melody.",
+    "description": "This artwork investigates depth and form through oil on linen, creating a layered visual experience.",
     "year": "2024",
-    "categories": ["featured", "home"]
+    "categories": ["install_1"]
+  },
+  {
+    "link": "https://i.postimg.cc/0QgFB0MP/bfl-2.jpg",
+    "post_link": "https://i.postimg.cc/TySxB02M/bfl-2-min.jpg",
+    "title": "Blood Flow in Forest",
+    "short_description": "In this scene, I combine the installation with the natural environment to create a melodic space. In the city, the material and mechanical sound of steel can be seen everywhere, but now it appears in the natural environment, colliding with a red melody.",
+    "description": "This artwork investigates depth and form through oil on linen, creating a layered visual experience.",
+    "year": "2024",
+    "categories": ["install_1"]
+  },
+  {
+    "link": "https://i.postimg.cc/3NhMdFYn/bfl-3.jpg",
+    "post_link": "https://i.postimg.cc/DJXhhGmW/bfl-3-min.jpg",
+    "title": "Blood Flow in Forest",
+    "short_description": "In this scene, I combine the installation with the natural environment to create a melodic space. In the city, the material and mechanical sound of steel can be seen everywhere, but now it appears in the natural environment, colliding with a red melody.",
+    "description": "This artwork investigates depth and form through oil on linen, creating a layered visual experience.",
+    "year": "2024",
+    "categories": ["install_1"]
+  },
+  {
+    "link": "https://i.postimg.cc/8kdQx9m3/bfl-4.jpg",
+    "post_link": "https://i.postimg.cc/5Hj1PTVS/bfl-4-min.jpg",
+    "title": "Blood Flow in Forest",
+    "short_description": "In this scene, I combine the installation with the natural environment to create a melodic space. In the city, the material and mechanical sound of steel can be seen everywhere, but now it appears in the natural environment, colliding with a red melody.",
+    "description": "This artwork investigates depth and form through oil on linen, creating a layered visual experience.",
+    "year": "2024",
+    "categories": ["install_1"]
+  },
+  {
+    "link": "https://i.postimg.cc/d3jbdZ0v/bfl-5.jpg",
+    "post_link": "https://i.postimg.cc/XB6bYvys/bfl-5-min.jpg",
+    "title": "Blood Flow in Forest",
+    "short_description": "In this scene, I combine the installation with the natural environment to create a melodic space. In the city, the material and mechanical sound of steel can be seen everywhere, but now it appears in the natural environment, colliding with a red melody.",
+    "description": "This artwork investigates depth and form through oil on linen, creating a layered visual experience.",
+    "year": "2024",
+    "categories": ["install_1"]
+  },
+  {
+    "link": "https://i.postimg.cc/zGBsbBYZ/bfl-6.jpg",
+    "post_link": "https://i.postimg.cc/5X4fzjKG/bfl-6-min.jpg",
+    "title": "Blood Flow in Forest",
+    "short_description": "In this scene, I combine the installation with the natural environment to create a melodic space. In the city, the material and mechanical sound of steel can be seen everywhere, but now it appears in the natural environment, colliding with a red melody.",
+    "description": "This artwork investigates depth and form through oil on linen, creating a layered visual experience.",
+    "year": "2024",
+    "categories": ["install_1"]
+  },
+
+  {
+    "link": "https://i.postimg.cc/RVM5mdP0/rtbm-1.jpg",
+    "post_link": "https://i.postimg.cc/RVM5mdP0/but-keep-min.jpg",
+    "title": "Rotten Tomato & Blueberry Mildew",
+    "short_description": "When the work is juxtaposed with the space, it feel like a strange creature invading from another planet, squeezing the living space.",
+    "description": "When the work is juxtaposed with the space, it feel like a strange creature invading from another planet, squeezing the living space.",
+    "year": "2024",
+    "categories": ["install_2"]
+  },
+  {
+    "link": "https://i.postimg.cc/43HjPS3W/rtbm-2.jpg",
+    "post_link": "https://i.postimg.cc/14q8X4fP/rtbm-2-min.jpg",
+    "title": "Rotten Tomato & Blueberry Mildew",
+    "short_description": "When the work is juxtaposed with the space, it feel like a strange creature invading from another planet, squeezing the living space.",
+    "description": "When the work is juxtaposed with the space, it feel like a strange creature invading from another planet, squeezing the living space.",
+    "year": "2024",
+    "categories": ["install_2"]
+  },
+  {
+    "link": "https://i.postimg.cc/BnVdx0J8/rtbm-3.jpg",
+    "post_link": "https://i.postimg.cc/BnVdx0J8/rtbm-3-min.jpg",
+    "title": "Rotten Tomato & Blueberry Mildew",
+    "short_description": "When the work is juxtaposed with the space, it feel like a strange creature invading from another planet, squeezing the living space.",
+    "description": "When the work is juxtaposed with the space, it feel like a strange creature invading from another planet, squeezing the living space.",
+    "year": "2024",
+    "categories": ["install_2"]
+  },
+  {
+    "link": "https://i.postimg.cc/Ghq0mDNx/childhood.jpg",
+    "post_link": "https://i.postimg.cc/28F24r8T/childhood-min.jpg",
+    "title": "Memories of Childhood",
+    "short_description": "My childhood was spent in a beautiful village with a different nature from the city, where mountains, streams, trees, flowers and plants all portrayed a tranquil and peaceful living environment.",
+    "description": "My childhood was spent in a beautiful village with a different nature from the city, where mountains, streams, trees, flowers and plants all portrayed a tranquil and peaceful living environment. Brick and mud walls, climbing hills and catching fish were all part of the daily routine, and climbing up to the peak of a hill to look out over the landscape. Later, I went to live in the city. As I grew older, my hometown became unfamiliar and I gradually felt alienated. But when I slowed down the peace and immersed myself in it, everything became intimate again. Every scene of my hometown has its own inclusiveness, just like the family waiting for the wanderer back home.",
+    "year": "2024",
+    "categories": ["install_3"]
   }
 ]

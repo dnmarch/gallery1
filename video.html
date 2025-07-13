@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video – Wenqin Fan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+            color: #333;
+        }
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 32px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            z-index: 2000;
+        }
+        h1.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .sidebar {
+            height: 100vh;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: width 0.3s ease;
+            padding-top: 60px;
+            color: white;
+            z-index: 1500;
+        }
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+        .sidebar a:hover {
+            color: #007bff;
+        }
+        .sidebar .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .sidebar .sub-menu {
+            margin-left: 20px;
+            display: none;
+        }
+        .sidebar .sub-menu a {
+            font-size: 14px;
+        }
+        .sidebar a.expandable {
+            cursor: pointer;
+        }
+        .sidebar a.expandable:hover {
+            color: #007bff;
+        }
+        .video-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 800px;
+            aspect-ratio: 16 / 9;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<h1 id="artist-title">Wenqin Fan</h1>
+<div class="menu-icon" onclick="openSidebar()">☰</div>
+<div class="sidebar" id="sidebar">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()"
+    >&times;</a
+    >
+    <a href="./index.html">Home</a>
+    <a
+            href="javascript:void(0)"
+            class="expandable"
+            onclick="toggleArtSubMenu()"
+    >Art</a
+    >
+    <div class="sub-menu" id="art-submenu">
+        <a href="./painting.html">Painting</a>
+        <a href="./install.html">Install</a>
+        <a href="./video.html">Video</a>
+    </div>
+    <a href="#exhibition">Exhibition</a>
+    <a href="#statement">Statement</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
+</div>
+
+<div class="video-container">
+    <iframe
+            src="https://www.youtube.com/embed/eDs9opZfbeA"
+            allowfullscreen
+    ></iframe>
+</div>
+
+<script>
+    function openSidebar() {
+        document.getElementById("sidebar").style.width = "300px";
+    }
+
+    function closeSidebar() {
+        document.getElementById("sidebar").style.width = "0";
+    }
+
+    function toggleArtSubMenu() {
+        const subMenu = document.getElementById("art-submenu");
+        if (subMenu.style.display === "block") {
+            subMenu.style.display = "none";
+        } else {
+            subMenu.style.display = "block";
+        }
+    }
+
+    window.onload = () => {
+        document.getElementById("artist-title").classList.add("show");
+    };
+</script>
+</body>
+</html>

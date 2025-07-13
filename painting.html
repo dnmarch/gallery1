@@ -1,263 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Artist Name</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background: #f8f8f8;
-        color: #333;
-      }
-      h1 {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        font-size: 32px;
-        opacity: 0;
-        transform: translateY(-20px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-      }
-      h1.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .menu-icon {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        font-size: 24px;
-        cursor: pointer;
-      }
-      .sidebar {
-        height: 100vh;
-        width: 0;
-        position: fixed;
-        top: 0;
-        right: 0;
-        background-color: #111;
-        overflow-x: hidden;
-        transition: width 0.3s ease;
-        padding-top: 60px;
-        color: white;
-        z-index: 1500;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artist Name</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f8f8;
+      color: #333;
+    }
+    h1 {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      font-size: 32px;
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    h1.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .menu-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .sidebar {
+      height: 100vh;
+      width: 0;
+      position: fixed;
+      top: 0;
+      right: 0;
+      background-color: #111;
+      overflow-x: hidden;
+      transition: width 0.3s ease;
+      padding-top: 60px;
+      color: white;
+      z-index: 1500;
+    }
 
-      .sidebar a {
-        padding: 10px 15px;
-        text-decoration: none;
-        font-size: 18px;
-        color: #fff;
-        display: block;
-        transition: 0.3s;
-      }
+    .sidebar a {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #fff;
+      display: block;
+      transition: 0.3s;
+    }
 
-      .sidebar a:hover {
-        color: #007bff;
-      }
+    .sidebar a:hover {
+      color: #007bff;
+    }
 
-      .sidebar .close-btn {
-        position: absolute;
-        top: 20px;
-        right: 25px;
-        font-size: 24px;
-        cursor: pointer;
-      }
+    .sidebar .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 25px;
+      font-size: 24px;
+      cursor: pointer;
+    }
 
-      .sidebar .sub-menu {
-        margin-left: 20px;
-        display: none;
-        transition: opacity 0.3s ease;
-      }
+    .sidebar .sub-menu {
+      margin-left: 20px;
+      display: none;
+      transition: opacity 0.3s ease;
+    }
 
-      .sidebar .sub-menu a {
-        font-size: 14px;
-      }
+    .sidebar .sub-menu a {
+      font-size: 14px;
+    }
 
-      .sidebar a.expandable {
-        cursor: pointer;
-      }
+    .sidebar a.expandable {
+      cursor: pointer;
+    }
 
-      .sidebar a.expandable:hover {
-        color: #007bff;
-      }
+    .sidebar a.expandable:hover {
+      color: #007bff;
+    }
 
-      .categories {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin: 100px 20px 20px 20px;
-      }
-      .categories button {
-        padding: 10px 15px;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        background-color: #444;
-        color: white;
-        transition: background-color 0.3s, transform 0.3s;
-      }
-      .categories button.active {
-        background-color: #007bff;
-      }
-      .categories button:hover {
-        background-color: #0056b3;
-        transform: scale(1.05);
-      }
-      .gallery {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        margin: 20px;
-      }
-      .gallery-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        width: 100%;
-        max-width: 600px;
-        padding: 10px;
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease;
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      .gallery-item img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 8px;
-      }
-      .gallery-item h3 {
-        margin: 10px 0 5px;
-        font-size: 18px;
-      }
-      .gallery-item p {
-        margin: 5px 0;
-        font-size: 14px;
-        color: #555;
-      }
-      .gallery-item.show {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .gallery-item.hidden {
-        display: none;
-      }
-    </style>
-  </head>
-  <body>
-    <h1 id="artist-title">Wenqin Fan</h1>
-    <div class="menu-icon" onclick="openSidebar()">☰</div>
-    <div class="sidebar" id="sidebar">
-      <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()"
-        >&times;</a
-      >
-      <a href="./index.html">Home</a>
-      <a
-        href="javascript:void(0)"
-        class="expandable"
-        onclick="toggleArtSubMenu()"
-        >Art</a
-      >
-      <div class="sub-menu" id="art-submenu">
-        <a href="./painting.html">Painting</a>
-        <a href="#install">Install</a>
-        <a href="#video">Video</a>
-      </div>
-      <a href="#exhibition">Exhibition</a>
-      <a href="#statement">Statement</a>
-      <a href="#cv">CV</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <div class="categories">
-      <button onclick="filterGallery('featured')">Featured</button>
-      <button onclick="filterGallery('-2024')">-2024</button>
-      <button onclick="filterGallery('2023')">2023</button>
-    </div>
-    <div class="gallery" id="gallery"></div>
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 100px 20px 20px 20px;
+    }
+    .categories button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #444;
+      color: white;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .categories button.active {
+      background-color: #007bff;
+    }
+    .categories button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin: 20px;
+    }
+    .gallery-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      padding: 10px;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .gallery-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    .gallery-item h3 {
+      margin: 10px 0 5px;
+      font-size: 18px;
+    }
+    .gallery-item p {
+      margin: 5px 0;
+      font-size: 14px;
+      color: #555;
+    }
+    .gallery-item.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .gallery-item.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<h1 id="artist-title">Wenqin Fan</h1>
+<div class="menu-icon" onclick="openSidebar()">☰</div>
+<div class="sidebar" id="sidebar">
+  <a href="javascript:void(0)" class="close-btn" onclick="closeSidebar()"
+  >&times;</a
+  >
+  <a href="./index.html">Home</a>
+  <a
+          href="javascript:void(0)"
+          class="expandable"
+          onclick="toggleArtSubMenu()"
+  >Art</a
+  >
+  <div class="sub-menu" id="art-submenu">
+    <a href="./painting.html">Painting</a>
+    <a href="./install.html">Install</a>
+    <a href="./video.html">Video</a>
+  </div>
+  <a href="#exhibition">Exhibition</a>
+  <a href="#statement">Statement</a>
+  <a href="#cv">CV</a>
+  <a href="#contact">Contact</a>
+</div>
+<div class="categories">
+  <button onclick="filterGallery('featured')">Featured</button>
+  <button onclick="filterGallery('-2024')">-2024</button>
+  <button onclick="filterGallery('2023')">2023</button>
+</div>
+<div class="gallery" id="gallery"></div>
+<div id="sentinel" style="height: 1px"></div>
 
-    <script>
-      function openSidebar() {
-        const sidebar = document.getElementById("sidebar");
-        sidebar.style.width = "300px";
-      }
+<script>
+  function openSidebar() {
+    document.getElementById("sidebar").style.width = "300px";
+  }
 
-      function closeSidebar() {
-        const sidebar = document.getElementById("sidebar");
-        sidebar.style.width = "0";
-      }
+  function closeSidebar() {
+    document.getElementById("sidebar").style.width = "0";
+  }
 
-      function toggleArtSubMenu() {
-        const subMenu = document.getElementById("art-submenu");
-        if (subMenu.style.display === "block") {
-          subMenu.style.display = "none";
-          subMenu.style.opacity = "0";
-        } else {
-          subMenu.style.display = "block";
-          subMenu.style.opacity = "1";
-        }
-      }
+  function toggleArtSubMenu() {
+    const subMenu = document.getElementById("art-submenu");
+    subMenu.style.display =
+            subMenu.style.display === "block" ? "none" : "block";
+  }
 
-      const jsonUrl = "./artwork.json";
+  const jsonUrl = "./artwork.json";
+  let galleryData = [];
+  let currentIndex = 0;
+  const itemsPerPage = 2;
+  let loading = false;
+  let allImagesLoaded = true;
 
-      fetch(jsonUrl)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to load metadata");
+  function renderImages() {
+    if (loading || !allImagesLoaded) return;
+    loading = true;
+    allImagesLoaded = false;
+
+    const gallery = document.getElementById("gallery");
+    const slice = galleryData.slice(
+            currentIndex,
+            currentIndex + itemsPerPage
+    );
+    let imagesToLoad = slice.length;
+
+    slice.forEach((image) => {
+      const item = document.createElement("div");
+      item.className = "gallery-item";
+      item.setAttribute("data-categories", image.categories.join(","));
+
+      const img = document.createElement("img");
+      img.src = image.post_link;
+      img.alt = image.title;
+      img.loading = "lazy";
+      img.dataset.fullSrc = image.post_link;
+      img.classList.add("blurred");
+
+      const highResImg = new Image();
+      highResImg.src = image.post_link;
+      highResImg.onload = () => {
+        setTimeout(() => {
+          img.src = image.post_link;
+          img.classList.remove("blurred");
+          imagesToLoad--;
+          if (imagesToLoad === 0) {
+            loading = false;
+            allImagesLoaded = true;
           }
-          return response.json();
-        })
-        .then((data) => {
-          const gallery = document.getElementById("gallery");
+        }, 100);
+      };
 
-          data.forEach((image) => {
-            const item = document.createElement("div");
-            item.className = "gallery-item";
-            item.setAttribute("data-categories", image.categories.join(","));
+      const title = document.createElement("h3");
+      title.textContent = image.title;
 
-            const img = document.createElement("img");
-            img.src = image.link;
-            img.alt = image.title;
+      const shortDesc = document.createElement("p");
+      shortDesc.textContent = image.short_description;
 
-            const title = document.createElement("h3");
-            title.textContent = image.title;
+      item.appendChild(img);
+      item.appendChild(title);
+      item.appendChild(shortDesc);
+      gallery.appendChild(item);
 
-            const shortDesc = document.createElement("p");
-            shortDesc.textContent = image.short_description;
+      animatedObserver.observe(item);
+    });
 
-            item.appendChild(img);
-            item.appendChild(title);
-            item.appendChild(shortDesc);
-            gallery.appendChild(item);
-          });
+    currentIndex += itemsPerPage;
+  }
 
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("show");
-                } else {
-                  entry.target.classList.remove("show");
-                }
-              });
-            },
-            { threshold: 0.1 }
-          );
+  function filterGallery(category) {
+    const items = document.querySelectorAll(".gallery-item");
+    const buttons = document.querySelectorAll(".categories button");
+    buttons.forEach((btn) => btn.classList.remove("active"));
 
-          document
-            .querySelectorAll(".gallery-item")
-            .forEach((item) => observer.observe(item));
+    items.forEach((item) => {
+      if (
+              category === "all" ||
+              item.getAttribute("data-categories").includes(category)
+      ) {
+        item.classList.remove("hidden");
+      } else {
+        item.classList.add("hidden");
+      }
+    });
 
-          const titleObserver = new IntersectionObserver((entries) => {
+    if (category !== "all") {
+      const activeBtn = document.querySelector(
+              `.categories button[onclick="filterGallery('${category}')"]`
+      );
+      if (activeBtn) activeBtn.classList.add("active");
+    }
+  }
+
+  const animatedObserver = new IntersectionObserver(
+          (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 entry.target.classList.add("show");
@@ -265,47 +296,54 @@
                 entry.target.classList.remove("show");
               }
             });
-          });
+          },
+          { threshold: 0.1 }
+  );
 
-          titleObserver.observe(document.getElementById("artist-title"));
+  const sentinelObserver = new IntersectionObserver(
+          (entries) => {
+            if (
+                    entries[0].isIntersecting &&
+                    currentIndex < galleryData.length &&
+                    allImagesLoaded
+            ) {
+              renderImages();
+            }
+          },
+          { rootMargin: "200px" }
+  );
 
-          filterGallery("all");
+  fetch(jsonUrl)
+          .then((response) => {
+            if (!response.ok) throw new Error("Failed to load metadata");
+            return response.json();
+          })
+          .then((data) => {
+            galleryData = data;
+            renderImages();
+            sentinelObserver.observe(document.getElementById("sentinel"));
 
-          document.querySelectorAll(".categories button").forEach((button) => {
-            button.addEventListener("click", (event) => {
-              event.stopPropagation();
+            const titleObserver = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("show");
+                }
+              });
             });
-          });
-        })
-        .catch((error) => {
-          console.error("Error fetching metadata:", error);
-        });
+            titleObserver.observe(document.getElementById("artist-title"));
 
-      function filterGallery(category) {
-        const items = document.querySelectorAll(".gallery-item");
-        const buttons = document.querySelectorAll(".categories button");
+            document.querySelectorAll(".categories button").forEach((button) => {
+              button.addEventListener("click", (e) => e.stopPropagation());
+            });
+          })
+          .catch((error) => console.error("Error fetching metadata:", error));
 
-        buttons.forEach((button) => button.classList.remove("active"));
-
-        items.forEach((item) => {
-          if (
-            category === "all" ||
-            item.getAttribute("data-categories").includes(category)
-          ) {
-            item.classList.remove("hidden");
-          } else {
-            item.classList.add("hidden");
-          }
-        });
-
-        if (category !== "all") {
-          document
-            .querySelector(
-              `.categories button[onclick="filterGallery('${category}')"]`
-            )
-            .classList.add("active");
-        }
-      }
-    </script>
-  </body>
+  document.addEventListener("click", (e) => {
+    const categories = document.querySelector(".categories");
+    if (!categories.contains(e.target)) {
+      filterGallery("all");
+    }
+  });
+</script>
+</body>
 </html>
