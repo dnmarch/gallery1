@@ -5,7 +5,7 @@
     "short_description": "200 × 150 cm",
     "description": "This large-scale painting conveys the dynamic energy of a forest with bold strokes and deep colors.",
     "year": "2024",
-    "categories": ["home", "-2024"],
+    "categories": ["home", "-2024", "featured"],
     "post_link": "https://i.postimg.cc/VvPxFM50/Blood-Flow-in-Forest.png"
   },
   {
@@ -14,7 +14,7 @@
     "short_description": "40 × 20 cm",
     "description": "This artwork investigates depth and form through oil on linen, creating a layered visual experience.",
     "year": "2024",
-    "categories": ["home", "-2024"],
+    "categories": ["home", "-2024", "featured"],
     "post_link": "https://i.postimg.cc/13XjwMMY/Three-Dimensional-Space.png"
   },
   {
@@ -245,7 +245,7 @@
   },
   {
     "link": "https://i.postimg.cc/43HjPS3W/rtbm-2.jpg",
-    "post_link": "https://i.postimg.cc/14q8X4fP/rtbm-2-min.jpg",
+    "post_link": "https://i.postimg.cc/43HjPS3W/rtbm-2.jpg",
     "title": "Rotten Tomato & Blueberry Mildew",
     "short_description": "When the work is juxtaposed with the space, it feel like a strange creature invading from another planet, squeezing the living space.",
     "description": "When the work is juxtaposed with the space, it feel like a strange creature invading from another planet, squeezing the living space.",
@@ -269,5 +269,14 @@
     "description": "My childhood was spent in a beautiful village with a different nature from the city, where mountains, streams, trees, flowers and plants all portrayed a tranquil and peaceful living environment. Brick and mud walls, climbing hills and catching fish were all part of the daily routine, and climbing up to the peak of a hill to look out over the landscape. Later, I went to live in the city. As I grew older, my hometown became unfamiliar and I gradually felt alienated. But when I slowed down the peace and immersed myself in it, everything became intimate again. Every scene of my hometown has its own inclusiveness, just like the family waiting for the wanderer back home.",
     "year": "2024",
     "categories": ["install_3"]
+  },
+  {
+    "link": "https://i.postimg.cc/Px2Fv60f/fwq-bfl.jpg",
+    "post_link": "https://i.postimg.cc/Px2Fv60f/fwq-bfl.jpg",
+    "title": "background_install",
+    "short_description": "My childhood was spent in a beautiful village with a different nature from the city, where mountains, streams, trees, flowers and plants all portrayed a tranquil and peaceful living environment.",
+    "description": "My childhood was spent in a beautiful village with a different nature from the city, where mountains, streams, trees, flowers and plants all portrayed a tranquil and peaceful living environment. Brick and mud walls, climbing hills and catching fish were all part of the daily routine, and climbing up to the peak of a hill to look out over the landscape. Later, I went to live in the city. As I grew older, my hometown became unfamiliar and I gradually felt alienated. But when I slowed down the peace and immersed myself in it, everything became intimate again. Every scene of my hometown has its own inclusiveness, just like the family waiting for the wanderer back home.",
+    "year": "2024",
+    "categories": ["background_install"]
   }
 ]

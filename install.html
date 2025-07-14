@@ -31,6 +31,7 @@
             right: 20px;
             font-size: 24px;
             cursor: pointer;
+            z-index: 2100; /* ✅ 确保在 h1 前面 */
         }
         .sidebar {
             height: 100vh;
@@ -79,25 +80,18 @@
         }
         .gallery {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
+            flex-direction: row;
+            overflow-x: auto;
+            gap: 20px;
             margin: 120px 20px 20px 20px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
         }
         .gallery-item {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            width: 100%;
-            max-width: 600px;
-            padding: 10px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease;
-            opacity: 0;
-            transform: translateY(20px);
+            flex: 0 0 100vw;
+            padding: 0 20px;
+            scroll-snap-align: start;
+            box-sizing: border-box;
         }
         .gallery-item.show {
             opacity: 1;
@@ -143,6 +137,7 @@
         }
         .group-content img {
             aspect-ratio: 4 / 3;
+            width: 100%;
             height: auto;
             object-fit: cover;
             cursor: pointer;
@@ -180,6 +175,69 @@
             max-width: 90vw;
             padding: 0 20px;
         }
+        .background-header {
+            width: 100%;
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-top: 100px;
+        }
+
+        @media (orientation: landscape) {
+            .background-header {
+                height: 80vh; /* 横屏时用更高的高度 */
+                background-size: contain; /* 使图像完整显示 */
+            }
+        }
+        .horizontal-titles {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 100px 20px 20px;
+            flex-wrap: nowrap; /* 不换行 */
+            overflow-x: auto;   /* 横向滚动 */
+            -webkit-overflow-scrolling: touch; /* iOS 平滑滚动 */
+            scrollbar-width: none; /* Firefox 隐藏滚动条 */
+        }
+        .horizontal-titles::-webkit-scrollbar {
+            display: none; /* Chrome 隐藏滚动条 */
+        }
+
+        .horizontal-titles .title-button {
+            cursor: pointer;
+            font-size: 16px;
+            padding: 8px 14px;
+            border-radius: 4px;
+            background-color: #eee;
+            transition: background-color 0.3s ease;
+            max-width: 100px;
+            text-align: center;
+            word-break: break-word;
+            white-space: normal;
+            line-height: 1.2;
+        }
+
+        .horizontal-titles .title-button:hover,
+        .horizontal-titles .title-button.active {
+            background-color: #ccc;
+        }
+
+        .gallery {
+            margin-top: 0;
+        }
+        .gallery-item img.staggered {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            animation: fadeInUp 2.5s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
     </style>
 </head>
 <body>
@@ -208,9 +266,10 @@
     </div>
     <a href="#exhibition">Exhibition</a>
     <a href="#statement">Statement</a>
-    <a href="#cv">CV</a>
-    <a href="#contact">Contact</a>
+    <a href="./cv.html">CV</a>
+    <a href="./contact.html">Contact</a>
 </div>
+<div class="horizontal-titles" id="horizontal-titles"></div>
 <div class="gallery" id="gallery"></div>
 <script>
     function openSidebar() {
@@ -299,29 +358,36 @@
     fetch("./artwork.json?ts=" + Date.now())
         .then((response) => response.json())
         .then((data) => {
+            const titleBar = document.getElementById("horizontal-titles");
             const gallery = document.getElementById("gallery");
+
             const groupedByCategory = {};
+
             data.forEach((img) => {
                 img.categories.forEach((cat) => {
-                    if (cat.startsWith("install_")) {
+                    if (cat === "background_install") {
+                        if (!groupedByCategory["background_install"]) {
+                            groupedByCategory["background_install"] = [];
+                        }
+                        groupedByCategory["background_install"].push(img);
+                    } else if (cat.startsWith("install_")) {
                         if (!groupedByCategory[cat]) groupedByCategory[cat] = [];
                         groupedByCategory[cat].push(img);
                     }
                 });
             });
 
-            Object.keys(groupedByCategory).forEach((category) => {
+
+            const categories = Object.keys(groupedByCategory);
+            const defaultCategory = "background_install";
+
+            categories.forEach((category) => {
                 const groupImages = groupedByCategory[category];
-                const item = document.createElement("div");
-                item.className = "gallery-item";
-                item.setAttribute("data-categories", category);
 
-                const titleOverlay = document.createElement("div");
-                titleOverlay.className = "group-title collapsed";
-                titleOverlay.textContent = groupImages[0].title || category;
-
-                const contentBlock = document.createElement("div");
-                contentBlock.className = "group-content";
+                const groupDiv = document.createElement("div");
+                groupDiv.className = "gallery-item";
+                groupDiv.setAttribute("data-category", category);
+                groupDiv.style.display = category === defaultCategory ? "block" : "none";
 
                 const grid = document.createElement("div");
                 const count = groupImages.length;
@@ -329,7 +395,6 @@
                 grid.style.display = "grid";
                 grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
                 grid.style.gap = "10px";
-                grid.style.width = "100%";
 
                 groupImages.forEach((imgData, i) => {
                     const img = document.createElement("img");
@@ -338,39 +403,57 @@
                     img.style.width = "100%";
                     img.style.borderRadius = "8px";
                     img.style.transition = "transform 0.3s ease";
-                    img.addEventListener(
-                        "mouseover",
-                        () => (img.style.transform = "scale(1.03)")
-                    );
-                    img.addEventListener(
-                        "mouseout",
-                        () => (img.style.transform = "scale(1)")
-                    );
+                    img.addEventListener("mouseover", () => (img.style.transform = "scale(1.03)"));
+                    img.addEventListener("mouseout", () => (img.style.transform = "scale(1)"));
                     img.addEventListener("click", () => openLightbox(groupImages, i));
                     grid.appendChild(img);
                 });
 
-                const shortDesc = document.createElement("p");
-                shortDesc.textContent = groupImages[0].short_description || "";
-                shortDesc.style.marginTop = "10px";
+                groupDiv.appendChild(grid);
 
-                contentBlock.appendChild(grid);
-                contentBlock.appendChild(shortDesc);
+                // ✅ 只为非 background_install 添加 titleBtn 和 shortDesc
+                if (groupImages[0].title !== "background_install") {
+                    const titleBtn = document.createElement("div");
+                    titleBtn.className = "title-button";
+                    titleBtn.textContent = groupImages[0].title || category;
+                    titleBar.appendChild(titleBtn);
 
-                item.appendChild(titleOverlay);
-                item.appendChild(contentBlock);
+                    titleBtn.addEventListener("click", (event) => {
+                        event.stopPropagation(); // <== 防止触发 body click
+                        document.querySelectorAll(".title-button").forEach((btn) => btn.classList.remove("active"));
+                        titleBtn.classList.add("active");
 
-                titleOverlay.addEventListener("click", () => {
-                    const isHidden = contentBlock.classList.contains("expanded");
-                    contentBlock.classList.toggle("expanded");
-                    titleOverlay.classList.toggle("collapsed");
-                    if (!isHidden) {
-                        item.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }
-                });
+                        document.querySelectorAll(".gallery-item").forEach((div) => {
+                            const isTarget = div.getAttribute("data-category") === category;
+                            div.style.display = isTarget ? "block" : "none";
 
-                gallery.appendChild(item);
+                            const images = div.querySelectorAll("img");
+                            images.forEach((img) => {
+                                img.classList.remove("staggered");
+                                img.style.animationDelay = "0s";
+                            });
+
+                            if (isTarget) {
+                                images.forEach((img, index) => {
+                                    void img.offsetWidth; // 强制 reflow 以重新触发动画
+                                    img.classList.add("staggered");
+                                    img.style.animationDelay = `${index * 500}ms`;
+                                });
+                            }
+                        });
+
+                    });
+
+                    const shortDesc = document.createElement("p");
+                    shortDesc.textContent = groupImages[0].short_description || "";
+                    shortDesc.style.marginTop = "10px";
+                    groupDiv.appendChild(shortDesc);
+                }
+
+                gallery.appendChild(groupDiv);
             });
+
+
 
             const observer = new IntersectionObserver(
                 (entries) => {
@@ -383,9 +466,7 @@
                 { threshold: 0.1 }
             );
 
-            document
-                .querySelectorAll(".gallery-item")
-                .forEach((item) => observer.observe(item));
+            document.querySelectorAll(".gallery-item").forEach((item) => observer.observe(item));
 
             const titleObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
@@ -395,8 +476,30 @@
                 });
             });
             titleObserver.observe(document.getElementById("artist-title"));
+            document.body.addEventListener("click", (event) => {
+                const isClickAllowed = event.target.closest(".title-button") ||
+                    event.target.closest(".sidebar") ||
+                    event.target.closest(".menu-icon");
+
+                if (!isClickAllowed) {
+                    // 恢复 active 样式
+                    document.querySelectorAll(".title-button").forEach((btn) => {
+                        btn.classList.remove("active");
+                    });
+                    const defaultBtn = Array.from(document.querySelectorAll(".title-button"))
+                        .find(btn => btn.textContent === groupedByCategory["background_install"][0].title);
+                    if (defaultBtn) defaultBtn.classList.add("active");
+
+                    // 显示默认图片组
+                    document.querySelectorAll(".gallery-item").forEach((div) => {
+                        div.style.display =
+                            div.getAttribute("data-category") === "background_install" ? "block" : "none";
+                    });
+                }
+            });
         })
         .catch((error) => console.error("Error fetching metadata:", error));
+
 </script>
 </body>
 </html>

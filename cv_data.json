@@ -1,0 +1,64 @@
+{
+  "education": [
+    {
+      "year": "2023-2024",
+      "title": "MA Painting, Royal College of Art, London, UK",
+      "link": ""
+    },
+    {
+      "year": "2019-2023",
+      "title": "BA Oil Painting, China Academy of Art, Hangzhou, China",
+      "link": ""
+    }
+  ],
+  "exhibition": [
+    {
+      "date": "2024.6",
+      "title": "Royal College of Art Graduation Show, London, UK",
+      "link": ""
+    },
+    {
+      "date": "2023.6",
+      "title": "Zhejiang Art Museum - Brain Garden, Hangzhou, China",
+      "link": ""
+    },
+    {
+      "date": "2022.5",
+      "title": "Yi Xiang Hui Art Space - Irrelevant, Hangzhou, China",
+      "link": ""
+    },
+    {
+      "date": "2022.4",
+      "title": "Quan Shan Shi Art Center - Green Mountains on Both Sides, Hangzhou, China",
+      "link": ""
+    }
+  ],
+  "awards": [
+    {
+      "title": "First Prize (Gold Award) in the 2020 Zhejiang Province “Hangzhou Star Entertainment Collaborative Innovation Challenge Cup”",
+      "link": ""
+    },
+    {
+      "title": "Individual Scholarship for the 2020–2021 academic year from the China Academy of Art",
+      "link": ""
+    },
+    {
+      "title": "Individual Scholarship for the 2021–2022 academic year from the China Academy of Art",
+      "link": ""
+    }
+  ],
+  "thesis": [
+    {
+      "title": "Zhejiang Arts and Crafts Thesis - Oil Painting in the Creation of the Efficacy of the Use of Materials Research",
+      "link": ""
+    },
+    {
+      "title": "Postgraduate Thesis - Subconscious and Abstract Painting - An Exploratory Practice of Materials and Media",
+      "link": ""
+    },
+    {
+      "title": "Undergraduate Thesis - Forms and Breakthroughs in Art in the Age of New Media: A Case Study of Artists Including John Grade",
+      "link": ""
+    }
+  ]
+}
