@@ -188,9 +188,7 @@
     <a href="./contact.html">Contact</a>
 </div>
 
-<div class="container" id="cv-container">
-    <!-- Sections will be inserted here -->
-</div>
+<div class="container" id="cv-container"></div>
 
 <script>
     function openSidebar() {
@@ -214,6 +212,9 @@
             .then(data => {
                 const container = document.getElementById("cv-container");
                 const sectionQueue = [];
+                const hasRevealed = [];
+                const hasEntered = [];
+                const readyToReveal = [];
 
                 function createSection(title, items, isDated = false) {
                     const section = document.createElement("section");
@@ -241,15 +242,14 @@
                     sectionQueue.push({ section, liElements });
                 }
 
-                // Create all sections
                 createSection("EDUCATION", data.education, true);
                 createSection("EXHIBITION", data.exhibition, true);
                 createSection("AWARDS", data.awards);
                 createSection("THESIS", data.thesis);
 
-                // Animate one section at a time
                 function revealSection(index) {
-                    if (index >= sectionQueue.length) return;
+                    if (index >= sectionQueue.length || hasRevealed[index]) return;
+                    hasRevealed[index] = true;
 
                     const { section, liElements } = sectionQueue[index];
                     section.classList.add("visible");
@@ -260,15 +260,37 @@
                         }, i * 200);
                     });
 
-                    // Wait until last item finishes animating before moving on
-                    const totalDelay = liElements.length * 200 + 2000;
+                    const totalDelay = liElements.length * 200 + 1000;
                     setTimeout(() => {
-                        revealSection(index + 1);
+                        readyToReveal[index + 1] = true;
+                        if (hasEntered[index + 1]) {
+                            revealSection(index + 1);
+                        }
                     }, totalDelay);
                 }
 
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        const index = sectionQueue.findIndex(obj => obj.section === entry.target);
+                        if (index !== -1) {
+                            hasEntered[index] = true;
+                            if (readyToReveal[index]) {
+                                revealSection(index);
+                            }
+                        }
+                    });
+                }, {
+                    threshold: 0.4
+                });
+
+                sectionQueue.forEach(({ section }) => observer.observe(section));
+
+                // 延迟启动第一个 section
                 setTimeout(() => {
-                    revealSection(0);
+                    readyToReveal[0] = true;
+                    if (hasEntered[0]) {
+                        revealSection(0);
+                    }
                 }, 500);
             });
     });

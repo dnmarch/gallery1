@@ -391,10 +391,12 @@
 
                 const grid = document.createElement("div");
                 const count = groupImages.length;
-                let cols = count === 4 ? 2 : Math.min(count, 3);
+                const cols = count === 4 ? 2 : Math.min(count, 3);
                 grid.style.display = "grid";
                 grid.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
                 grid.style.gap = "10px";
+
+                const imgElements = [];
 
                 groupImages.forEach((imgData, i) => {
                     const img = document.createElement("img");
@@ -407,11 +409,12 @@
                     img.addEventListener("mouseout", () => (img.style.transform = "scale(1)"));
                     img.addEventListener("click", () => openLightbox(groupImages, i));
                     grid.appendChild(img);
+                    imgElements.push(img);
                 });
 
                 groupDiv.appendChild(grid);
 
-                // ✅ 只为非 background_install 添加 titleBtn 和 shortDesc
+                // ✅ 只为非 background_install 添加按钮和短描述
                 if (groupImages[0].title !== "background_install") {
                     const titleBtn = document.createElement("div");
                     titleBtn.className = "title-button";
@@ -419,7 +422,7 @@
                     titleBar.appendChild(titleBtn);
 
                     titleBtn.addEventListener("click", (event) => {
-                        event.stopPropagation(); // <== 防止触发 body click
+                        event.stopPropagation();
                         document.querySelectorAll(".title-button").forEach((btn) => btn.classList.remove("active"));
                         titleBtn.classList.add("active");
 
@@ -435,23 +438,47 @@
 
                             if (isTarget) {
                                 images.forEach((img, index) => {
-                                    void img.offsetWidth; // 强制 reflow 以重新触发动画
+                                    void img.offsetWidth;
                                     img.classList.add("staggered");
-                                    img.style.animationDelay = `${index * 500}ms`;
+                                    img.style.animationDelay = `${index * 990}ms`;
                                 });
                             }
                         });
-
                     });
 
+                    // ✅ 创建 shortDesc，但不立即插入 DOM
                     const shortDesc = document.createElement("p");
                     shortDesc.textContent = groupImages[0].short_description || "";
                     shortDesc.style.marginTop = "10px";
-                    groupDiv.appendChild(shortDesc);
+                    shortDesc.style.opacity = "0";
+                    shortDesc.style.transform = "translateY(20px)";
+                    shortDesc.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+                    shortDesc.style.pointerEvents = "none";
+
+                    // ✅ 等待所有图片加载完成后再插入 shortDesc 并触发动画
+                    Promise.all(
+                        imgElements.map((img) => {
+                            return new Promise((resolve) => {
+                                if (img.complete && img.naturalWidth !== 0) {
+                                    resolve();
+                                } else {
+                                    img.onload = img.onerror = () => resolve();
+                                }
+                            });
+                        })
+                    ).then(() => {
+                        groupDiv.appendChild(shortDesc);
+                        requestAnimationFrame(() => {
+                            shortDesc.style.opacity = "1";
+                            shortDesc.style.transform = "translateY(0)";
+                        });
+                    });
                 }
 
                 gallery.appendChild(groupDiv);
             });
+
+
 
 
 

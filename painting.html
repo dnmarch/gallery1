@@ -276,7 +276,9 @@
     currentCategory = category;
     currentIndex = 0;
     allImagesLoaded = true;
+    loading = false;
 
+    // 更新按钮状态
     const buttons = document.querySelectorAll(".categories button");
     buttons.forEach((btn) => btn.classList.remove("active"));
 
@@ -285,10 +287,26 @@
     );
     if (activeBtn) activeBtn.classList.add("active");
 
+    // 清空 gallery 并重新加载
     const gallery = document.getElementById("gallery");
     gallery.innerHTML = "";
+
+    // 重新观察 sentinel
+    const sentinel = document.getElementById("sentinel");
+    sentinelObserver.unobserve(sentinel);
+    sentinelObserver.observe(sentinel);
+
+    // 先加载第一批
     renderImages();
+
+    // ✅ 如果 sentinel 当前在视野中，手动再触发一次 renderImages()
+    const rect = sentinel.getBoundingClientRect();
+    const viewHeight = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top >= 0 && rect.top <= viewHeight) {
+      renderImages();
+    }
   }
+
 
   const animatedObserver = new IntersectionObserver(
           (entries) => {
